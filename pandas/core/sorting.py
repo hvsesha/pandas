@@ -398,7 +398,9 @@ def nargsort(
 
     if key is not None:
         # see TestDataFrameSortKey, TestRangeIndex::test_sort_values_key
-        items = ensure_key_mapped(items, key)
+        #56081 BugFix Casting 
+        #items = ensure_key_mapped(items, key)
+        items=cast(items, ensure_key_mapped(items, key))._values
         return nargsort(
             items,
             kind=kind,
